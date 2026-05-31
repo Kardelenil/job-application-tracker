@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Başvurularım</h2>
+
+<div style="margin-bottom:15px">
+    <form method="GET" style="display:inline">
+        <select name="status" onchange="this.form.submit()">
+            <option value="">Tümü</option>
+            <option value="applied" {% if current_filter == 'applied' %}selected{% endif %}>Başvuruldu</option>
+            <option value="reviewing" {% if current_filter == 'reviewing' %}selected{% endif %}>İncelemede</option>
+            <option value="interview" {% if current_filter == 'interview' %}selected{% endif %}>Mülakat</option>
+            <option value="offer" {% if current_filter == 'offer' %}selected{% endif %}>Teklif</option>
+            <option value="rejected" {% if current_filter == 'rejected' %}selected{% endif %}>Red</option>
+            <option value="accepted" {% if current_filter == 'accepted' %}selected{% endif %}>Kabul</option>
+        </select>
+    </form>
+    <a href="/add" style="float:right" class="btn">+ Yeni Başvuru</a>
+</div>
+
+{% if applications %}
+    <table>
+        <tr><th>Şirket</th><th>Pozisyon</th><th>Durum</th><th>Başvuru Tarihi</th><th>İşlemler</th></tr>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app.company }}</td>
+            <td>{{ app.position }}</td>
+            <td>{{ app.status }}</td>
+            <td>{{ app.applied_date }}</td>
+            <td>
+                <a href="/edit/{{ app.id }}">✏️ Düzenle</a>
+                <a href="/delete/{{ app.id }}" onclick="return confirm('Silmek istediğinize emin misiniz?')">🗑️ Sil</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Henüz hiç başvuru yok. <a href="/add">Yeni başvuru ekle</a></p>
+{% endif %}
+{% endblock %}

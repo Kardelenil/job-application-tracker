@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Başvuru Düzenle</h2>
+<form method="POST">
+    <div><label>Şirket Adı:</label><br><input type="text" name="company" value="{{ app.company }}" required></div>
+    <div><label>Pozisyon:</label><br><input type="text" name="position" value="{{ app.position }}" required></div>
+    <div><label>Durum:</label><br>
+        <select name="status">
+            <option value="applied" {% if app.status == 'applied' %}selected{% endif %}>Başvuruldu</option>
+            <option value="reviewing" {% if app.status == 'reviewing' %}selected{% endif %}>İncelemede</option>
+            <option value="interview" {% if app.status == 'interview' %}selected{% endif %}>Mülakat</option>
+            <option value="offer" {% if app.status == 'offer' %}selected{% endif %}>Teklif</option>
+            <option value="rejected" {% if app.status == 'rejected' %}selected{% endif %}>Reddedildi</option>
+            <option value="accepted" {% if app.status == 'accepted' %}selected{% endif %}>Kabul Edildi</option>
+        </select>
+    </div>
+    <div><label>Maaş Aralığı:</label><br><input type="text" name="salary_range" value="{{ app.salary_range or '' }}"></div>
+    <div><label>Başvuru Tarihi:</label><br><input type="date" name="applied_date" value="{{ app.applied_date }}" required></div>
+    <div><label>Sonraki Aksiyon Tarihi:</label><br><input type="date" name="next_action_date" value="{{ app.next_action_date or '' }}"></div>
+    <div><label>Notlar:</label><br><textarea name="notes" rows="3" cols="40">{{ app.notes or '' }}</textarea></div>
+    <button type="submit">Güncelle</button>
+    <a href="/applications">İptal</a>
+</form>
+{% endblock %}

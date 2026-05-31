@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>İş Başvuru Takip Sistemi</h2>
+<p>İş başvurularınızı takip edin, mülakatları yönetin, başarı oranınızı görün.</p>
+<br>
+{% if session.user_id %}
+    <a href="/dashboard" class="btn">Dashboard'a Git</a>
+    <a href="/applications" class="btn">Başvurularım</a>
+{% else %}
+    <p>Başlamak için <a href="/login">giriş yapın</a> veya <a href="/register">kayıt olun</a>.</p>
+{% endif %}
+{% endblock %}

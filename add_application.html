@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Yeni Başvuru Ekle</h2>
+<form method="POST">
+    <div><label>Şirket Adı:</label><br><input type="text" name="company" required></div>
+    <div><label>Pozisyon:</label><br><input type="text" name="position" required></div>
+    <div><label>Durum:</label><br>
+        <select name="status">
+            <option value="applied">Başvuruldu</option>
+            <option value="reviewing">İncelemede</option>
+            <option value="interview">Mülakat</option>
+            <option value="offer">Teklif</option>
+            <option value="rejected">Reddedildi</option>
+            <option value="accepted">Kabul Edildi</option>
+        </select>
+    </div>
+    <div><label>Maaş Aralığı:</label><br><input type="text" name="salary_range" placeholder="örn: 50000-70000 TL"></div>
+    <div><label>Başvuru Tarihi:</label><br><input type="date" name="applied_date" required></div>
+    <div><label>Sonraki Aksiyon Tarihi:</label><br><input type="date" name="next_action_date"></div>
+    <div><label>Notlar:</label><br><textarea name="notes" rows="3" cols="40"></textarea></div>
+    <button type="submit">Kaydet</button>
+    <a href="/applications">İptal</a>
+</form>
+{% endblock %}

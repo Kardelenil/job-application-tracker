@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Giriş Yap</h2>
+<form method="POST">
+    <div><label>Email:</label><br><input type="email" name="email" required></div>
+    <div><label>Şifre:</label><br><input type="password" name="password" required></div>
+    <button type="submit">Giriş Yap</button>
+</form>
+<p style="margin-top:15px">Hesabın yok mu? <a href="/register">Kayıt Ol</a></p>
+{% endblock %}
